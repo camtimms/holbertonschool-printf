@@ -14,9 +14,9 @@ typedef struct format
 };
 
 int _printf(const char *format, ...);
-char *convert_c(int n);
-char *convert_s(char *s);
-char *convert_percent(void);
+int print_c(int n);
+int print_s(char *s);
+int print_percent(void);
 
 char *(*get_print_func(char c))(void);
 
