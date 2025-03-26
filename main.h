@@ -4,7 +4,7 @@
 /**
  * struct format - Struct format
  *
- * @format_c: The format specifier character
+ * @c: The format specifier character
  * @f: The function associated
  */
 typedef struct format
