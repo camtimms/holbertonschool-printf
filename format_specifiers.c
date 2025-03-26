@@ -58,7 +58,7 @@ int print_percent(void);
 * format specifer
 * Return: Success (0)
 */
-int (*get_print_func(char *s))(void)
+int (*get_print_func(char *s))(char *)
 {
 	format print_f[] = {
 	{"c", print_c},
