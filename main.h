@@ -9,7 +9,7 @@
  */
 typedef struct format
 {
-	char *format_c;
+	char *c;
 	int (*f)(int a, int b);
 };
 
