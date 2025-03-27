@@ -19,7 +19,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int (*print_function)(va_list *);
+	int (*print_function)(va_list);
 	int i = 0;
 
 	if (!format)
@@ -35,7 +35,7 @@ int _printf(const char *format, ...)
 			if (print_function == NULL)
 				return (-1);
 
-			print_function(va_arg(args, void));
+			print_function(args);
 			i = i + 2;
 		}
 		else

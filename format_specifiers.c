@@ -44,11 +44,15 @@ int print_s(va_list args)
 /**
 * print_percent - Print a percent sign
 *
+* @args: Variadic argument which to keep inputs in struct consistant and
+* so argument is incremented when this is encountered
+*
 * Description: Prints a percent sign (%)
 * Return: Success (0)
 */
-int print_percent(void)
+int print_percent(va_list args)
 {
+	(void) args;
 	putchar('%');
 	return (0);
 }
