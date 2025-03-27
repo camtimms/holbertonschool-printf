@@ -27,14 +27,17 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1] != NULL)
 		{
 			print_function = get_print_func(format[i + 1]);
 			if (print_function == NULL)
 				exit(98);
 			print_function(va_arg(args, char *));
+			
+			i = i + 2;
 		}
 		i++;
+		putchar(format[i]);
 	}
 
 	va_end(args);

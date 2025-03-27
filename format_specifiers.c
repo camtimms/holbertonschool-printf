@@ -69,7 +69,7 @@ int (*get_print_func(char *s))(char *)
 
 	int i = 0;
 
-	while (print_f[i].c != NULL && s[1] == '\0')
+	while (print_f[i].c != NULL)
 	{
 		if (*s == *print_f[i].c) 
 			return (print_f[i].f);
