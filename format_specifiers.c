@@ -61,9 +61,9 @@ int print_percent(void)
 int (*get_print_func(char *s))(char *)
 {
 	format print_f[] = {
-	{"c", print_c},
-	{"s", print_s},
-	{"%", print_percent},
+	{'c', print_c},
+	{'s', print_s},
+	{'%', print_percent},
 	{NULL, NULL}
 	};
 
