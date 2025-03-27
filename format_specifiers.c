@@ -78,4 +78,3 @@ int (*get_print_func(char *s))(char *)
 
 	return (NULL);
 }
-
