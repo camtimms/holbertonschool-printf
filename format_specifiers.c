@@ -71,8 +71,8 @@ int (*get_print_func(char *s))(char *)
 
 	while (print_f[i].c != NULL && s[1] == '\0')
 	{
-		if (*s == *print_f[i].c) /* c is for character */
-			return (print_f[i].f); /*  f is for function */
+		if (*s == *print_f[i].c) 
+			return (print_f[i].f);
 		i++;
 	}
 
