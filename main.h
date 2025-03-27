@@ -7,11 +7,11 @@
  * @c: The format specifier character
  * @f: The function associated
  */
-typedef struct format
+typedef struct format_specifiers
 {
 	char c;
 	int (*f)(void *);
-}format;
+} format_s;
 
 int _printf(const char *format, ...);
 int print_c(int n);

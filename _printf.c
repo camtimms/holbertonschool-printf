@@ -18,28 +18,31 @@
 
 int _printf(const char *format, ...)
 {
-	va_list = args;
-
-	int (*get_print_func(char *s))(char *);
+	va_list args;
+	int (*print_function)(void *);
 	int i = 0;
 
 	if (!format)
-		exit(98);
+		return(-1);
 
 	va_start(args, format);
+	
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%' && format[i + 1])
+		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			print_function = get_print_func(format[i + 1]);
 			if (print_function == NULL)
-				exit(98);
+				return (-1);
 			print_function(va_arg(args, char *));
 			
 			i = i + 2;
 		}
+		else
+		{	
+			putchar(format[i]);
+		}
 		i++;
-		putchar(format[i]);
 	}
 
 	va_end(args);

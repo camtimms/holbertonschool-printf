@@ -58,18 +58,18 @@ int print_percent(void)
 * format specifer
 * Return: Success (0)
 */
-int (*get_print_func(char *s))(char *)
+int (*get_print_func(char c))(char *)
 {
-	format print_f[] = {
-	{'c', print_c},
+	format_s print_f[] = {
+	{'c', (int (*)(void *))print_c},
 	{'s', print_s},
 	{'%', print_percent},
-	{NULL, NULL}
+	{'\0', NULL}
 	};
 
 	int i = 0;
 
-	while (print_f[i].c != NULL)
+	while (print_f[i].c != '\0')
 	{
 		if (*s == *print_f[i].c) 
 			return (print_f[i].f);
