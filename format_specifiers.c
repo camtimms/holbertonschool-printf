@@ -43,7 +43,7 @@ int print_s(char *s)
 * Description: Prints a percent sign (%)
 * Return: Success (0)
 */
-int print_percent(void);
+int print_percent(void)
 {
 	putchar('%');
 	return (0);

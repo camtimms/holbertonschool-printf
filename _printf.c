@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
 /**
  *_printf - Prints a string based on the format
@@ -18,6 +19,7 @@
 int _printf(const char *format, ...)
 {
 	va_list = args;
+
 	int (*get_print_func(char *s))(char *);
 	int i = 0;
 
@@ -27,7 +29,7 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%' && format[i + 1] != NULL)
+		if (format[i] == '%' && format[i + 1])
 		{
 			print_function = get_print_func(format[i + 1]);
 			if (print_function == NULL)
