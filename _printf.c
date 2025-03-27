@@ -8,25 +8,25 @@
  *
  * @format: String to format
  *
- * Description: Pritns a string and looks for the
+ * Description: Prints a string and looks for the
  * format specifier '%' then uses the next character
  * to add in the additional arguments in order based
  * on the format specifier.
  *
- * Retrurn: Success (0), Failure (-1)
+ * Return: Success (0), Failure (-1)
  */
 
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int (*print_function)(void *);
+	int (*print_function)(va_list *);
 	int i = 0;
 
 	if (!format)
-		return(-1);
+		return (-1);
 
 	va_start(args, format);
-	
+
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%' && format[i + 1] != '\0')
@@ -34,15 +34,15 @@ int _printf(const char *format, ...)
 			print_function = get_print_func(format[i + 1]);
 			if (print_function == NULL)
 				return (-1);
-			print_function(va_arg(args, char *));
-			
+
+			print_function(va_arg(&args));
 			i = i + 2;
 		}
 		else
-		{	
+		{
 			putchar(format[i]);
+			i++;
 		}
-		i++;
 	}
 
 	va_end(args);

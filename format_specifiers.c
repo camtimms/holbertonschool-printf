@@ -4,34 +4,38 @@
 /**
 * print_c - Print an ASCII chacater
 *
-* @n: ASCII value
+* @args: Variadic argument of a ASCII Character
 *
-* Description: Prints an ASCII chacater using
+* Description: Prints an ASCII chacater using an input of a variadic argument
+* and casting it to an int which putchar can use to print
 * Return: Success (0)
 */
-int print_c(int n)
+int print_c(va_list args)
 {
-	putchar(n);
+	char c = va_arg(args, int);
+
+	putchar(c);
 	return (0);
 }
 
 /**
 * print_s - Print a string
 *
-* @s: Input string
+* @args: Variadic argument list containing a string
 *
-* Description: Prints a string (s)
+* Description: Prints a string (s) by casting it from a varadic argument list
 * Return: Success (0)
 */
-int print_s(char *s)
+int print_s(va_list args)
 {
+	char *s = va_args(args, char *);
 	int i;
 
 	if (s == NULL)
 		s = "(null)";
 
 	for (i = 0; s[i] != '\0'; i++)
-		putchar(*s);
+		putchar(s[i]);
 
 	return (0);
 }
@@ -45,6 +49,7 @@ int print_s(char *s)
 */
 int print_percent(void)
 {
+	(void)args;
 	putchar('%');
 	return (0);
 }
@@ -52,7 +57,7 @@ int print_percent(void)
 /**
 * get_print_func - Function pointer to find the right function to use
 *
-* @s: Format specifier character from printf string argument
+* @c: Format specifier character from printf string argument
 *
 * Description: Goes through an array and returns the matching function to the
 * format specifer
@@ -71,7 +76,7 @@ int (*get_print_func(char c))(char *)
 
 	while (print_f[i].c != '\0')
 	{
-		if (*s == *print_f[i].c) 
+		if (c == print_f[i].c)
 			return (print_f[i].f);
 		i++;
 	}
