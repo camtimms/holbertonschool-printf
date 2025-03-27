@@ -35,7 +35,7 @@ int _printf(const char *format, ...)
 			if (print_function == NULL)
 				return (-1);
 
-			print_function(va_arg(&args));
+			print_function(va_arg(args, void));
 			i = i + 2;
 		}
 		else

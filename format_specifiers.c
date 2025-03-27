@@ -28,7 +28,7 @@ int print_c(va_list args)
 */
 int print_s(va_list args)
 {
-	char *s = va_args(args, char *);
+	char *s = va_arg(args, char *);
 	int i;
 
 	if (s == NULL)
@@ -49,7 +49,6 @@ int print_s(va_list args)
 */
 int print_percent(void)
 {
-	(void)args;
 	putchar('%');
 	return (0);
 }
@@ -63,10 +62,10 @@ int print_percent(void)
 * format specifer
 * Return: Success (0)
 */
-int (*get_print_func(char c))(char *)
+int (*get_print_func(char c))(va_list)
 {
 	format_s print_f[] = {
-	{'c', (int (*)(void *))print_c},
+	{'c', print_c},
 	{'s', print_s},
 	{'%', print_percent},
 	{'\0', NULL}

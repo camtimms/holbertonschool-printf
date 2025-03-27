@@ -18,7 +18,7 @@ typedef struct format_specifiers
 int _printf(const char *format, ...);
 int print_c(va_list args);
 int print_s(va_list args);
-int print_percent(va_list args);
+int print_percent(void);
 
 int (*get_print_func(char c))(va_list);
 
