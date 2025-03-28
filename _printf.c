@@ -63,7 +63,7 @@ int _printf(const char *format, ...)
 			}
 			else
 				print_len = print_function(args);
-			
+
 			if (print_len < 0)
 				return (-1);
 			i += 2;
