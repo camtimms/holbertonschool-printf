@@ -41,6 +41,7 @@ int _printf(const char *format, ...)
 			{
 			putchar(format[i]);
 			putchar(format[i + 1]);
+			strlen += 2;
 			}
 
 			print_len = print_function(args);
