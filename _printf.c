@@ -6,15 +6,11 @@
 
 int handle_case(const char *format, int i, int strlen)
 {
-
 	putchar(format[i]);
 	putchar(format[i + 1]);
 	return (strlen + 2);
 
 }
-
-
-
 
 /**
  *_printf - Prints a string based on the format

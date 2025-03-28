@@ -57,6 +57,36 @@ int print_percent(va_list args)
 	return (1);
 }
 
+
+int print_d(va_list args)
+{
+
+	int num =va_arg(args, int);
+	int count = 0;
+	int temp = num;
+	int divisor = 1;
+
+	if (num < 0)
+	{
+		putchar('-');
+		num = -num;
+		count++;
+	}
+
+	while (temp / divisor >= 10)
+		divisor = divisor * 10;
+
+	while (divisor > 0)
+	{
+		putchar((num / divisor) + '0');
+		num = num % divisor;
+		divisor = divisor / 10;
+		count++;
+	}
+	return (count);
+}
+
+
 /**
 * get_print_func - Function pointer to find the right function to use
 *
@@ -72,6 +102,7 @@ int (*get_print_func(char c))(va_list)
 	{'c', print_c},
 	{'s', print_s},
 	{'%', print_percent},
+	{'d', print_d},
 	{'\0', NULL}
 	};
 
