@@ -61,7 +61,7 @@ int print_percent(va_list args)
 int print_d(va_list args)
 {
 
-	int num =va_arg(args, int);
+	int num = va_arg(args, int);
 	int count = 0;
 	int temp = num;
 	int divisor = 1;
@@ -73,7 +73,7 @@ int print_d(va_list args)
 		count++;
 	}
 
-	while (temp / divisor >= 10)
+	while (temp / divisor >= 10 || temp / divisor <= -10)
 		divisor = divisor * 10;
 
 	while (divisor > 0)
