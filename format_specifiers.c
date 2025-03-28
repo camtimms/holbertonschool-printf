@@ -63,7 +63,7 @@ int print_percent(va_list args)
  * @args: Variadic argument which contains an int
  *
  * Description: Prints an base 10 integer
- * Return: Length of digits printed (i) 
+ * Return: Length of digits printed (i)
  */
 
 int print_d(va_list args)
