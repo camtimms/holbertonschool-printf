@@ -4,74 +4,82 @@
 /**
 * print_c - Print an ASCII chacater
 *
-* @n: ASCII value
+* @args: Variadic argument of a ASCII Character
 *
-* Description: Prints an ASCII chacater using
+* Description: Prints an ASCII chacater using an input of a variadic argument
+* and casting it to an int which putchar can use to print
 * Return: Success (0)
 */
-int print_c(int n)
+int print_c(va_list args)
 {
-	putchar(n);
-	return (0);
+	char c = va_arg(args, int);
+
+	putchar(c);
+	return (1);
 }
 
 /**
 * print_s - Print a string
 *
-* @s: Input string
+* @args: Variadic argument list containing a string
 *
-* Description: Prints a string (s)
+* Description: Prints a string (s) by casting it from a varadic argument list
 * Return: Success (0)
 */
-int print_s(char *s)
+int print_s(va_list args)
 {
+	char *s = va_arg(args, char *);
 	int i;
 
 	if (s == NULL)
 		s = "(null)";
 
 	for (i = 0; s[i] != '\0'; i++)
-		putchar(*s);
+		putchar(s[i]);
 
-	return (0);
+	return (i);
 }
 
 
 /**
 * print_percent - Print a percent sign
 *
+* @args: Variadic argument which to keep inputs in struct consistant and
+* so argument is incremented when this is encountered
+*
 * Description: Prints a percent sign (%)
 * Return: Success (0)
 */
-int print_percent(void)
+int print_percent(va_list args)
 {
+	(void) args;
 	putchar('%');
-	return (0);
+	return (1);
 }
 
 /**
 * get_print_func - Function pointer to find the right function to use
 *
-* @s: Format specifier character from printf string argument
+* @c: Format specifier character from printf string argument
 *
 * Description: Goes through an array and returns the matching function to the
 * format specifer
 * Return: Success (0)
 */
-int (*get_print_func(char *s))(char *)
+int (*get_print_func(char c))(va_list)
 {
-	format print_f[] = {
+	format_s print_f[] = {
 	{'c', print_c},
 	{'s', print_s},
 	{'%', print_percent},
-	{NULL, NULL}
+	{'\0', NULL}
 	};
 
 	int i = 0;
 
-	while (print_f[i].c != NULL)
+	while (print_f[i].c != '\0')
 	{
-		if (*s == *print_f[i].c) 
+		if (c == print_f[i].c)
 			return (print_f[i].f);
 		i++;
 	}
