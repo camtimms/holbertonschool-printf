@@ -3,6 +3,19 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+
+int handle_case(const char *format, int i, int strlen)
+{
+
+	putchar(format[i]);
+	putchar(format[i + 1]);
+	return (strlen + 2);
+
+}
+
+
+
+
 /**
  *_printf - Prints a string based on the format
  *
@@ -39,9 +52,7 @@ int _printf(const char *format, ...)
 			print_function = get_print_func(format[i + 1]);
 			if (print_function == NULL)
 			{
-				putchar(format[i]);
-				putchar(format[i + 1]);
-				strlen += 2;
+				handle_case(format, i, strlen);
 			}
 			else
 				print_len = print_function(args);
