@@ -71,23 +71,28 @@ int print_d(va_list args)
 
 	int num = va_arg(args, int);
 	int i = 0;
-	int temp = num;
+	unsigned int n;
+	unsigned int temp = num;
 	int divisor = 1;
 
 	if (num < 0)
 	{
 		putchar('-');
-		num = -num;
+		n = -((unsigned int) num);
 		i++;
 	}
+	else
+		n = num;
 
-	while (temp / divisor >= 10 || temp / divisor <= -10)
+	temp = n;
+
+	while (temp / divisor >= 10)
 		divisor = divisor * 10;
 
 	while (divisor > 0)
 	{
-		putchar((num / divisor) + '0');
-		num = num % divisor;
+		putchar((n / divisor) + '0');
+		n %= divisor;
 		divisor = divisor / 10;
 		i++;
 	}
