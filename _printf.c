@@ -3,12 +3,23 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+/**
+ * print_func_null - Prints characters as normal if print_function fails
+ *
+ * @format: Original string
+ * @i: Index
+ *
+ * Description: Prints the characters as normal if get_print_func doesn't find
+ * a format specifier character
+ *
+ * Return: Number of charactes printed. Always (2)
+ */
 
-int handle_case(const char *format, int i, int strlen)
+int print_func_null(const char *format, int i)
 {
 	putchar(format[i]);
 	putchar(format[i + 1]);
-	return (strlen + 2);
+	return (2);
 
 }
 
@@ -48,7 +59,7 @@ int _printf(const char *format, ...)
 			print_function = get_print_func(format[i + 1]);
 			if (print_function == NULL)
 			{
-				strlen = handle_case(format, i, strlen);
+				print_len = print_func_null(format, i);
 			}
 			else
 				print_len = print_function(args);
