@@ -38,14 +38,18 @@ int _printf(const char *format, ...)
 
 			print_function = get_print_func(format[i + 1]);
 			if (print_function == NULL)
-				return (-1);
-
-			print_len = print_function(args);
+			{
+				putchar(format[i]);
+				putchar(format[i + 1]);
+				strlen += 2;
+			}
+			else
+				print_len = print_function(args);
+			
 			if (print_len < 0)
 				return (-1);
 			i += 2;
 			strlen += print_len;
-
 		}
 		else
 		{
@@ -54,7 +58,6 @@ int _printf(const char *format, ...)
 			strlen++;
 		}
 	}
-
 	va_end(args);
 	return (strlen);
 }
