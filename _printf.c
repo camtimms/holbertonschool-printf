@@ -20,7 +20,9 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int (*print_function)(va_list);
+	int print_len;
 	int i = 0;
+	int strlen = 0;
 
 	if (!format)
 		return (-1);
@@ -35,16 +37,21 @@ int _printf(const char *format, ...)
 			if (print_function == NULL)
 				return (-1);
 
-			print_function(args);
-			i = i + 2;
+			print_len = print_function(args);
+			if (print_len < 0)
+				return (-1);
+			i += 2;
+			strlen += print_len;
+
 		}
 		else
 		{
 			putchar(format[i]);
 			i++;
+			strlen++;
 		}
 	}
 
 	va_end(args);
-	return (0);
+	return (strlen);
 }

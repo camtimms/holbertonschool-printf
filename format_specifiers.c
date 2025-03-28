@@ -15,7 +15,7 @@ int print_c(va_list args)
 	char c = va_arg(args, int);
 
 	putchar(c);
-	return (0);
+	return (1);
 }
 
 /**
@@ -37,7 +37,7 @@ int print_s(va_list args)
 	for (i = 0; s[i] != '\0'; i++)
 		putchar(s[i]);
 
-	return (0);
+	return (i);
 }
 
 
@@ -54,7 +54,7 @@ int print_percent(va_list args)
 {
 	(void) args;
 	putchar('%');
-	return (0);
+	return (1);
 }
 
 /**
