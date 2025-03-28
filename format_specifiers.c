@@ -81,7 +81,7 @@ int print_d(va_list args)
 		i++;
 	}
 
-	while (temp / divisor >= 10)
+	while (temp / divisor >= 10 || temp / divisor <= -10)
 		divisor = divisor * 10;
 
 	while (divisor > 0)
