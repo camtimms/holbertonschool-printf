@@ -106,7 +106,8 @@ int print_d(va_list args)
  * @args: Varidatic argument which can contain decimal, octal or hexdecimal
  * numbers
  *
- * Description: Converts hexadecimal and octal numbers and prints them
+ * Description: Converts hexadecimal and octal numbers and prints them.
+ * kstrtoint converts any base number to a decimal int.
  * Return: Length of characters printed (i) or fail (-1)
  */
 
@@ -114,19 +115,14 @@ int print_i(va_list args)
 {
 	char *input_num = va_arg(args, char *);
 	int num = 0;
-	int scan_check = 0;
+	int fail_check = 0;
 
 	if (!input)
 		return (-1);
+	
+	fail_check = kstrtoint(input_num, 0, &num);
 
-	if (input_num[0] == '0' && input_num[1] == 'x')
-		scan_check = sscanf(input_num, "%x", &num);
-	else if (input_num[0] == '0' && input[1] != '\0')
-		scan_check = sscanf(input_num, "%o", &num);
-	else
-		scan_check = sscanf(input, "%d", &num);
-
-	if (scan_check != 1)
+	if (fail_check < 0)
 		return (-1);
 
 	return (print_d(num));
