@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
 * print_c - Print an ASCII chacater
@@ -99,34 +100,34 @@ int print_d(va_list args)
 	return (i);
 }
 
-
 /**
-* get_print_func - Function pointer to find the right function to use
-*
-* @c: Format specifier character from printf string argument
-*
-* Description: Goes through an array and returns the matching function to the
-* format specifer
-* Return: Success (0)
-*/
-int (*get_print_func(char c))(va_list)
+ * print_i - Converts hexadecimal and octal numbers and prints them
+ *
+ * @args: Varidatic argument which can contain decimal, octal or hexdecimal
+ * numbers
+ *
+ * Description: Converts hexadecimal and octal numbers and prints them
+ * Return: Length of characters printed (i) or fail (-1)
+ */
+
+int print_i(va_list args)
 {
-	format_s print_f[] = {
-	{'c', print_c},
-	{'s', print_s},
-	{'%', print_percent},
-	{'d', print_d},
-	{'\0', NULL}
-	};
+	char *input_num = va_arg(args, char *);
+	int num = 0;
+	int scan_check = 0;
 
-	int i = 0;
+	if (!input)
+		return (-1);
 
-	while (print_f[i].c != '\0')
-	{
-		if (c == print_f[i].c)
-			return (print_f[i].f);
-		i++;
-	}
+	if (input_num[0] == '0' && input_num[1] == 'x')
+		scan_check = sscanf(input_num, "%x", &num);
+	else if (input_num[0] == '0' && input[1] != '\0')
+		scan_check = sscanf(input_num, "%o", &num);
+	else
+		scan_check = sscanf(input, "%d", &num);
 
-	return (NULL);
+	if (scan_check != 1)
+		return (-1);
+
+	return (print_d(num));
 }
