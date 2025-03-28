@@ -58,14 +58,19 @@ int print_percent(va_list args)
 }
 
 /**
+ * print_d - Prints an integer
  *
+ * @args: Variadic argument which contains an int
+ *
+ * Description: Prints an base 10 integer
+ * Return: Length of digits printed (i) 
  */
 
 int print_d(va_list args)
 {
 
 	int num = va_arg(args, int);
-	int count = 0;
+	int i = 0;
 	int temp = num;
 	int divisor = 1;
 
@@ -73,10 +78,10 @@ int print_d(va_list args)
 	{
 		putchar('-');
 		num = -num;
-		count++;
+		i++;
 	}
 
-	while (temp / divisor >= 10 || temp / divisor <= -10)
+	while (temp / divisor >= 10)
 		divisor = divisor * 10;
 
 	while (divisor > 0)
@@ -84,9 +89,9 @@ int print_d(va_list args)
 		putchar((num / divisor) + '0');
 		num = num % divisor;
 		divisor = divisor / 10;
-		count++;
+		i++;
 	}
-	return (count);
+	return (i);
 }
 
 
