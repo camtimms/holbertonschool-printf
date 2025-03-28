@@ -115,15 +115,24 @@ int print_i(va_list args)
 {
 	char *input_num = va_arg(args, char *);
 	int num = 0;
-	int fail_check = 0;
+	int scan_check = 0;
+	va_list n;
 
-	if (!input)
+	if (!input_num)
+		return (-1);
+
+	if (input_num[0] == '0' && input_num[1] == 'x')
+		scan_check = sscanf(input_num, "%x", &num);
+	else if (input_num[0] == '0' && input_num[1] != '\0')
+		scan_check = sscanf(input_num, "%o", &num);
+	else
+		scan_check = sscanf(input_num, "%d", &num);
+
+	if (scan_check != 1)
 		return (-1);
 	
-	fail_check = kstrtoint(input_num, 0, &num);
+	va_start(n, num);
+	va_end(n);
 
-	if (fail_check < 0)
-		return (-1);
-
-	return (print_d(num));
+	return (print_d(n));
 }

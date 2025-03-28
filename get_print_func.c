@@ -13,23 +13,23 @@
 */
 int (*get_print_func(char c))(va_list)
 {
-        format_s print_f[] = {
-        {'c', print_c},
-        {'s', print_s},
-        {'%', print_percent},
-        {'d', print_d},
-        {'i', print_i},
-        {'\0', NULL}
-        };
+	format_s print_f[] = {
+	{'c', print_c},
+	{'s', print_s},
+	{'%', print_percent},
+	{'d', print_d},
+	{'i', print_i},
+	{'\0', NULL}
+	};
 
-        int i = 0;
+	int i = 0;
 
-        while (print_f[i].c != '\0')
-        {
-                if (c == print_f[i].c)
-                        return (print_f[i].f);
-                i++;
-        }
+	while (print_f[i].c != '\0')
+	{
+		if (c == print_f[i].c)
+			return (print_f[i].f);
+		i++;
+	}
 
-        return (NULL);
+	return (NULL);
 }
