@@ -116,23 +116,41 @@ int print_i(va_list args)
 	char *input_num = va_arg(args, char *);
 	int num = 0;
 	int scan_check = 0;
-	va_list n;
+	int i = 0;
+	int divisor = 1;
+	unsigned int n;
+	unsigned int temp;
 
+	/* Convert base to decimal */
 	if (!input_num)
 		return (-1);
-
 	if (input_num[0] == '0' && input_num[1] == 'x')
 		scan_check = sscanf(input_num, "%x", &num);
 	else if (input_num[0] == '0' && input_num[1] != '\0')
 		scan_check = sscanf(input_num, "%o", &num);
 	else
 		scan_check = sscanf(input_num, "%d", &num);
-
 	if (scan_check != 1)
 		return (-1);
-	
-	va_start(n, num);
-	va_end(n);
 
-	return (print_d(n));
+	/* Print decimal int */
+	if (num < 0)
+	{
+		putchar('-');
+		n = -((unsigned int) num);
+		i++;
+	}
+	else
+		n = num;
+	temp = n;
+	while (temp / divisor >= 10)
+		divisor = divisor * 10;
+	while (divisor > 0)
+	{
+		putchar((n / divisor) + '0');
+		n %= divisor;
+		divisor = divisor / 10;
+		i++;
+	}
+	return (i);
 }
