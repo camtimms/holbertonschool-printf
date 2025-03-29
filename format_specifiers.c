@@ -101,56 +101,18 @@ int print_d(va_list args)
 }
 
 /**
- * print_i - Converts hexadecimal and octal numbers and prints them
+ * print_i - Passes the int into print_d
  *
  * @args: Varidatic argument which can contain decimal, octal or hexdecimal
  * numbers
  *
- * Description: Converts hexadecimal and octal numbers and prints them.
- * kstrtoint converts any base number to a decimal int.
+ * Description: Hex and Oct nums are already converted to decimal on
+ * compilation.so no conversion needs to be done. Function just calls and
+ * passes args to print_d.
  * Return: Length of characters printed (i) or fail (-1)
  */
 
 int print_i(va_list args)
 {
-	char *input_num = va_arg(args, char *);
-	int num = 0;
-	int scan_check = 0;
-	int i = 0;
-	int divisor = 1;
-	unsigned int n;
-	unsigned int temp;
-
-	/* Convert base to decimal */
-	if (!input_num)
-		return (-1);
-	if (input_num[0] == '0' && input_num[1] == 'x')
-		scan_check = sscanf(input_num, "%x", &num);
-	else if (input_num[0] == '0' && input_num[1] != '\0')
-		scan_check = sscanf(input_num, "%o", &num);
-	else
-		scan_check = sscanf(input_num, "%d", &num);
-	if (scan_check != 1)
-		return (-1);
-
-	/* Print decimal int */
-	if (num < 0)
-	{
-		putchar('-');
-		n = -((unsigned int) num);
-		i++;
-	}
-	else
-		n = num;
-	temp = n;
-	while (temp / divisor >= 10)
-		divisor = divisor * 10;
-	while (divisor > 0)
-	{
-		putchar((n / divisor) + '0');
-		n %= divisor;
-		divisor = divisor / 10;
-		i++;
-	}
-	return (i);
+	return (print_d(args));
 }
