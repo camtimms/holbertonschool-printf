@@ -13,6 +13,8 @@ It supports a limited set of format specifiers and does not handle advanced prin
 
 # FORMAT SPECIFIERS
 
+%c: Print a character.
+
 %s: Print a string.
 
 %%: Print a literal percent sign.
