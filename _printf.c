@@ -58,9 +58,7 @@ int _printf(const char *format, ...)
 
 			print_function = get_print_func(format[i + 1]);
 			if (print_function == NULL)
-			{
 				print_len = print_func_null(format, i);
-			}
 			else
 				print_len = print_function(args);
 
